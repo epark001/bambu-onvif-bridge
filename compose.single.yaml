@@ -1,8 +1,8 @@
 services:
-  bambu-protect-overlay:
+  bambu-onvif-bridge:
     build: .
-    image: ghcr.io/epark001/bambu-protect-overlay:local
-    container_name: bambu-protect-overlay
+    image: ghcr.io/epark001/bambu-onvif-bridge:local
+    container_name: bambu-onvif-bridge
     network_mode: host
     restart: unless-stopped
     cap_add:

@@ -1,10 +1,10 @@
 # Contributing
 
-Thanks for your interest in improving Bambu Protect Overlay! Contributions are welcome.
+Thanks for your interest in improving Bambu ONVIF Bridge! Contributions are welcome.
 
 ## Reporting bugs
 
-Open a [GitHub Issue](https://github.com/epark001/bambu-protect-overlay/issues) with:
+Open a [GitHub Issue](https://github.com/epark001/bambu-onvif-bridge/issues) with:
 
 - **What you expected** vs **what actually happened**
 - **Steps to reproduce**

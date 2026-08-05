@@ -21,10 +21,10 @@ Only run images you trust with this capability.
 Create the appdata directory and copy the example configuration into it:
 
 ```bash
-mkdir -p /mnt/user/appdata/bambu-protect-overlay
+mkdir -p /mnt/user/appdata/bambu-onvif-bridge
 curl -fsSL \
-  https://raw.githubusercontent.com/epark001/bambu-protect-overlay/main/config.unraid.example.yaml \
-  -o /mnt/user/appdata/bambu-protect-overlay/config.yaml
+  https://raw.githubusercontent.com/epark001/bambu-onvif-bridge/main/config.unraid.example.yaml \
+  -o /mnt/user/appdata/bambu-onvif-bridge/config.yaml
 ```
 
 Edit `config.yaml` and replace every example address, credential, serial,
@@ -66,16 +66,16 @@ order.
 
 ## Install the Container
 
-The included template is `unraid/bambu-protect-overlay.xml`. Its effective
+The included template is `unraid/bambu-onvif-bridge.xml`. Its effective
 Docker settings are:
 
 | Unraid field | Value |
 |---|---|
-| Repository | `ghcr.io/epark001/bambu-protect-overlay:latest` |
+| Repository | `ghcr.io/epark001/bambu-onvif-bridge:latest` |
 | Network type | Host |
 | Privileged | No |
 | Extra parameters | `--cap-add=NET_ADMIN --restart=unless-stopped --log-opt max-size=50m --log-opt max-file=3` |
-| Appdata path | `/mnt/user/appdata/bambu-protect-overlay` to `/config` (read-only) |
+| Appdata path | `/mnt/user/appdata/bambu-onvif-bridge` to `/config` (read-only) |
 | Variable | `TZ`, set to your IANA timezone |
 
 Until the template is available through Community Applications, use Unraid's
@@ -98,8 +98,8 @@ The logs should show this sequence:
 Useful checks from an Unraid terminal:
 
 ```bash
-docker logs bambu-protect-overlay
-docker inspect --format '{{.State.Health.Status}}' bambu-protect-overlay
+docker logs bambu-onvif-bridge
+docker inspect --format '{{.State.Health.Status}}' bambu-onvif-bridge
 ip -br address show bpo-onvif0
 ```
 

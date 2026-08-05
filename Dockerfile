@@ -15,12 +15,12 @@ RUN apk add --no-cache git \
 FROM alexxit/go2rtc:1.9.14@sha256:675c318b23c06fd862a61d262240c9a63436b4050d177ffc68a32710d9e05bae
 
 ARG ONVIF_SERVER_COMMIT
-LABEL org.opencontainers.image.title="Bambu Protect Overlay" \
+LABEL org.opencontainers.image.title="Bambu ONVIF Bridge" \
       org.opencontainers.image.description="Bambu printer video overlays exposed as virtual ONVIF cameras" \
-      org.opencontainers.image.source="https://github.com/epark001/bambu-protect-overlay" \
+      org.opencontainers.image.source="https://github.com/epark001/bambu-onvif-bridge" \
       org.opencontainers.image.licenses="MIT" \
-      io.bambu-protect-overlay.go2rtc.version="1.9.14" \
-      io.bambu-protect-overlay.onvif-server.commit="${ONVIF_SERVER_COMMIT}"
+      io.bambu-onvif-bridge.go2rtc.version="1.9.14" \
+      io.bambu-onvif-bridge.onvif-server.commit="${ONVIF_SERVER_COMMIT}"
 
 RUN apk add --no-cache nodejs iproute2 tzdata \
     && python -m venv /opt/venv
@@ -30,7 +30,7 @@ ENV PATH="/opt/venv/bin:${PATH}" \
     PYTHONUNBUFFERED=1 \
     CONFIG_PATH=/config/config.yaml \
     OUTPUT_DIR=/data/overlay \
-    RUNTIME_DIR=/run/bambu-protect-overlay
+    RUNTIME_DIR=/run/bambu-onvif-bridge
 
 COPY requirements-container.txt /tmp/requirements-container.txt
 RUN pip install --no-cache-dir -r /tmp/requirements-container.txt \
@@ -41,10 +41,10 @@ COPY bambu-overlay/bambu_overlay.py /app/bambu_overlay.py
 COPY bpo_runtime /app/bpo_runtime
 COPY container/supervisord.conf /etc/supervisord.conf
 COPY container/entrypoint.sh /usr/local/bin/bpo-entrypoint
-COPY LICENSE THIRD_PARTY_NOTICES.md /usr/share/licenses/bambu-protect-overlay/
+COPY LICENSE THIRD_PARTY_NOTICES.md /usr/share/licenses/bambu-onvif-bridge/
 
 RUN chmod 0755 /usr/local/bin/bpo-entrypoint \
-    && mkdir -p /config /data/overlay /run/bambu-protect-overlay
+    && mkdir -p /config /data/overlay /run/bambu-onvif-bridge
 
 WORKDIR /app
 VOLUME ["/config"]

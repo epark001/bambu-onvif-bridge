@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-# Bambu Protect Overlay - Printer Configuration
+# Bambu ONVIF Bridge - Printer Configuration
 # ----------------------------------------------------------------------------
 # Copy this file to printers.yaml and fill in your printer details.
 # printers.yaml is gitignored to keep credentials out of version control.

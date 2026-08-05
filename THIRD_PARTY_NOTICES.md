@@ -1,5 +1,13 @@
 # Third-Party Notices
 
+## Original project
+
+Bambu ONVIF Bridge is derived from
+[bambu-protect-overlay](https://github.com/mtnears/bambu-protect-overlay).
+
+- Copyright: 2026 Ken Pauley
+- License: MIT
+
 The combined container includes the following projects:
 
 ## go2rtc

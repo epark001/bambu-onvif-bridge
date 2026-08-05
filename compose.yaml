@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-# Bambu Protect Overlay - Docker Compose
+# Bambu ONVIF Bridge - Docker Compose
 # ----------------------------------------------------------------------------
 # Three services:
 #   go2rtc           - pulls RTSPS streams from Bambu printers, transcodes with overlay

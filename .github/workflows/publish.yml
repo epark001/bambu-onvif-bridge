@@ -33,7 +33,7 @@ jobs:
           platforms: linux/amd64
           load: true
           push: false
-          tags: bambu-protect-overlay:test
+          tags: bambu-onvif-bridge:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - run: sh tests/container-smoke.sh

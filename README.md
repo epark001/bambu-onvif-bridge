@@ -1,4 +1,4 @@
-# Bambu Protect Overlay
+# Bambu ONVIF Bridge
 
 **Bambu Lab printer cameras in UniFi Protect, with live MQTT data burned into the video.**
 
@@ -13,7 +13,7 @@ Adopt your Bambu printer's camera into UniFi Protect as a third-party camera, an
 ## 🎬 Example overlay
 
 ```
-MTNEARZ.COM: GORT   Printing                                Apr 28 2026 13:09:09
+BAMBU ONVIF: GORT   Printing                                Apr 28 2026 13:09:09
 Layer 31/54 (46%)   ETA 2h 19m (done 15:28)   Nozzle 270/270   Bed 100/100   Chamber 28
 ASA   Humidity: 3/5 (Normal)   Speed: Standard (100%)   Stage: Printing
 Job: Jig - Bottle Opener
@@ -32,7 +32,7 @@ Four-line strip across the bottom of the frame on a single solid translucent bar
 - **🚥 Print stage display** — decodes Bambu's stage codes into human-readable phases: "Heating Bed", "Calibrating Flow", "Cleaning Nozzle", "Printing", etc.
 - **⚡ Speed mode** — shows current speed level (Silent / Standard / Sport / Ludicrous) and percentage multiplier.
 - **💧 Friendly humidity labels** — translates Bambu's 0–5 AMS scale into "Normal", "Damp", "Dry", etc.
-- **🏠 Multi-printer ready** — all four of my Bambu printers (Dewey/Huey/Louie/Gort) on one Synology NAS.
+- **🏠 Multi-printer ready** — run multiple Bambu printers from one Docker host.
 - **🔧 Docker-only deployment** — a single Unraid-ready image or the legacy three-service Compose stack, with no host-side Python/ffmpeg installs.
 
 ---
@@ -135,8 +135,8 @@ The existing three-service Compose deployment remains available:
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/epark001/bambu-protect-overlay.git
-cd bambu-protect-overlay
+git clone https://github.com/epark001/bambu-onvif-bridge.git
+cd bambu-onvif-bridge
 
 # 2. Copy the example configs and edit them with your printer details
 cp printers.example.yaml printers.yaml
@@ -286,9 +286,14 @@ See [docs/CUSTOMIZING.md → Performance Tuning](docs/CUSTOMIZING.md#performance
 
 ## 🙏 Acknowledgements
 
+- This project is derived from [bambu-protect-overlay](https://github.com/mtnears/bambu-protect-overlay) by Ken Pauley and is distributed under the MIT License
 - [**go2rtc**](https://github.com/AlexxIT/go2rtc) by AlexxIT — the streaming swiss army knife that makes the whole pipeline possible
 - [**rtsp-to-onvif**](https://github.com/daniela-hase/onvif-server) by daniela-hase — the ONVIF wrapper that UniFi Protect actually plays nicely with
 - The Bambu and UniFi communities for documenting all the schema details and gotchas
+
+Bambu Lab, Unraid, and UniFi are trademarks of their respective owners. This
+project is not affiliated with or endorsed by Bambu Lab, Lime Technology, or
+Ubiquiti.
 
 ---
 

@@ -1,1 +1,1 @@
-"""Runtime support for the combined Bambu Protect Overlay container."""
+"""Runtime support for the combined Bambu ONVIF Bridge container."""

@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-image="${1:-bambu-protect-overlay:test}"
+image="${1:-bambu-onvif-bridge:test}"
 name="bpo-container-smoke"
 
 cleanup() {

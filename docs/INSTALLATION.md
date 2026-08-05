@@ -75,9 +75,9 @@ In Bambu Handy: tap the printer → **Settings** → **WLAN** → **Access Code*
 ## 5. Clone the repo
 
 ```bash
-mkdir -p /volume1/docker/bambu-protect-overlay
-cd /volume1/docker/bambu-protect-overlay
-git clone https://github.com/epark001/bambu-protect-overlay.git .
+mkdir -p /volume1/docker/bambu-onvif-bridge
+cd /volume1/docker/bambu-onvif-bridge
+git clone https://github.com/epark001/bambu-onvif-bridge.git .
 ```
 
 ## 6. Configure
@@ -117,7 +117,7 @@ Set the `TZ` environment variable on `bambu-overlay` to your local timezone.
 ## 7. Bring it up
 
 ```bash
-cd /volume1/docker/bambu-protect-overlay
+cd /volume1/docker/bambu-onvif-bridge
 docker compose up -d --build
 ```
 

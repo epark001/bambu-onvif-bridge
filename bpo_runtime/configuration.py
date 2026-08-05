@@ -10,7 +10,7 @@ from urllib.parse import quote
 import yaml
 
 CONFIG_PATH = Path(os.environ.get("CONFIG_PATH", "/config/config.yaml"))
-RUNTIME_DIR = Path(os.environ.get("RUNTIME_DIR", "/run/bambu-protect-overlay"))
+RUNTIME_DIR = Path(os.environ.get("RUNTIME_DIR", "/run/bambu-onvif-bridge"))
 OVERLAY_DIR = Path(os.environ.get("OUTPUT_DIR", "/data/overlay"))
 
 DEFAULT_VIDEO = {
