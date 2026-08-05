@@ -1,5 +1,9 @@
 # Linux Host Networking (non-Synology)
 
+> This guide applies to the legacy three-service Compose deployment. The
+> [Unraid single-container image](UNRAID.md) creates and cleans up its static
+> macvlan interfaces automatically.
+
 The `rtsp-to-onvif` container needs each virtual ONVIF camera to live on its
 own network interface with the MAC address declared in `config.yaml`. On
 **Synology DSM**, this happens automatically — DSM's network stack handles

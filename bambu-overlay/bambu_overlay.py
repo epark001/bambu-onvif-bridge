@@ -89,11 +89,17 @@ def load_config() -> dict:
         log.error("config must contain a non-empty 'printers' list")
         sys.exit(1)
 
-    required_keys = {"name", "host", "user", "pass", "serial"}
+    required_keys = {"name", "host", "serial"}
     for p in printers:
         missing = required_keys - set(p)
         if missing:
             log.error("printer entry missing keys %s: %s", sorted(missing), p)
+            sys.exit(1)
+        p.setdefault("user", "bblp")
+        if "pass" not in p and "access_code" in p:
+            p["pass"] = p["access_code"]
+        if not p.get("pass"):
+            log.error("printer entry missing access_code/pass: %s", p.get("name", "unknown"))
             sys.exit(1)
 
     return {
@@ -109,6 +115,7 @@ def load_config() -> dict:
 
 state_lock = threading.Lock()
 state: dict[str, dict] = {}
+OUTPUT_NAMES: dict[str, str] = {}
 SITE_LABEL = ""
 LINE_WIDTH = 80
 
@@ -427,7 +434,7 @@ def write_overlay_files(name: str) -> None:
     with state_lock:
         lines = render_lines(name, state[name])
 
-    base = name.lower()
+    base = OUTPUT_NAMES.get(name, name.lower())
     for idx, line in enumerate(lines, start=1):
         path = OUTPUT_DIR / f"{base}_{idx}.txt"
         tmp  = path.with_suffix(".tmp")
@@ -509,7 +516,7 @@ def writer_thread(printers: list) -> None:
 # ---------------------------------------------------------------------------
 
 def main() -> None:
-    global SITE_LABEL, LINE_WIDTH, state
+    global SITE_LABEL, LINE_WIDTH, OUTPUT_NAMES, state
 
     cfg = load_config()
     SITE_LABEL = cfg["site_label"]
@@ -517,6 +524,7 @@ def main() -> None:
     printers   = cfg["printers"]
 
     state = {p["name"]: {} for p in printers}
+    OUTPUT_NAMES = {p["name"]: p.get("stream_name", p["name"].lower()) for p in printers}
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 

@@ -1,0 +1,13 @@
+services:
+  bambu-protect-overlay:
+    build: .
+    image: ghcr.io/mtnears/bambu-protect-overlay:local
+    container_name: bambu-protect-overlay
+    network_mode: host
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    environment:
+      TZ: America/Los_Angeles
+    volumes:
+      - ./config.yaml:/config/config.yaml:ro

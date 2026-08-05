@@ -1,6 +1,8 @@
-# Installation Guide
+# Legacy Compose Installation Guide
 
-Step-by-step setup for a fresh deployment.
+Step-by-step setup for the original three-service deployment. Unraid users
+should use the [single-container guide](UNRAID.md), which does not require
+persistent host networking scripts.
 
 ## 1. Prepare your Docker host
 

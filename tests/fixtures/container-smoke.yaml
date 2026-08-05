@@ -1,0 +1,27 @@
+site_label: TEST
+line_width: 70
+
+network:
+  parent_interface: dummy0
+
+video:
+  framerate: 10
+  bitrate_kbps: 1024
+  maxrate_kbps: 1536
+  buffer_kbps: 3072
+  preset: ultrafast
+
+printers:
+  - name: Smoke Test
+    host: 192.0.2.10
+    user: bblp
+    access_code: TESTCODE
+    serial: TEST-SERIAL
+    onvif:
+      ip: 192.0.2.211/24
+      mac: 02:00:00:00:00:01
+      uuid: c70f06e3-c2e3-4568-904c-0cca380a614a
+      ports:
+        server: 11000
+        rtsp: 11001
+        snapshot: 11002

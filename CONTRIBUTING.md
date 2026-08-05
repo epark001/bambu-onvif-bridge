@@ -36,6 +36,8 @@ Open an issue describing:
    - YAML: comments explaining "why" not just "what"
    - Markdown: short paragraphs, code fences with language tags
 4. Test thoroughly:
+   - Run `python -m unittest discover -v`
+   - Confirm the root `Dockerfile` builds for the combined image
    - Confirm `docker compose up --build` works from a clean clone
    - Verify the overlay renders correctly with a real printer if possible
    - Check that CPU usage is still reasonable

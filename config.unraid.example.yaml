@@ -1,0 +1,35 @@
+# Copy this file to config.yaml in the container's /config appdata directory.
+site_label: BAMBU
+line_width: 70
+
+network:
+  # Usually br0 on Unraid. Confirm under Settings > Network Settings.
+  parent_interface: br0
+
+video:
+  width: 1680
+  height: 1080
+  framerate: 15
+  bitrate_kbps: 3072
+  maxrate_kbps: 4096
+  buffer_kbps: 8192
+  preset: veryfast
+  font_size: 26
+  bar_height: 180
+
+printers:
+  - name: Gort
+    host: 192.168.1.170
+    user: bblp
+    access_code: YOUR_ACCESS_CODE_HERE
+    serial: YOUR_SERIAL_NUMBER_HERE
+    onvif:
+      # Select an unused static address outside your DHCP allocation pool.
+      ip: 192.168.1.211/24
+      # Each printer needs a unique, locally administered unicast MAC.
+      mac: 02:00:00:00:00:01
+      uuid: 00000000-0000-4000-8000-000000000001
+      ports:
+        server: 11000
+        rtsp: 11001
+        snapshot: 11002

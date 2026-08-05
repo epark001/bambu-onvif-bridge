@@ -6,7 +6,7 @@ Adopt your Bambu printer's camera into UniFi Protect as a third-party camera, an
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
-[![Docker](https://img.shields.io/badge/docker-compose-2496ed.svg)](https://docs.docker.com/compose/)
+[![Docker](https://img.shields.io/badge/docker-2496ed.svg)](https://docs.docker.com/)
 
 ---
 
@@ -33,7 +33,7 @@ Four-line strip across the bottom of the frame on a single solid translucent bar
 - **⚡ Speed mode** — shows current speed level (Silent / Standard / Sport / Ludicrous) and percentage multiplier.
 - **💧 Friendly humidity labels** — translates Bambu's 0–5 AMS scale into "Normal", "Damp", "Dry", etc.
 - **🏠 Multi-printer ready** — all four of my Bambu printers (Dewey/Huey/Louie/Gort) on one Synology NAS.
-- **🔧 Docker-only deployment** — three containers, one compose file, no host-side Python/ffmpeg installs.
+- **🔧 Docker-only deployment** — a single Unraid-ready image or the legacy three-service Compose stack, with no host-side Python/ffmpeg installs.
 
 ---
 
@@ -42,6 +42,7 @@ Four-line strip across the bottom of the frame on a single solid translucent bar
 - [How It Works](#how-it-works)
 - [Why Bother?](#why-bother)
 - [Requirements](#requirements)
+- [Deployment Options](#deployment-options)
 - [Quick Start](#quick-start)
 - [Configuration](#configuration)
 - [Multiple Printers](#multiple-printers)
@@ -72,7 +73,9 @@ Bambu printer ──MQTT:8883──► bambu-overlay (Python)
                           UniFi Protect (NVR + viewer)
 ```
 
-Three Docker services running side-by-side on a single host:
+Three processes run side-by-side on a single host. The recommended image
+supervises them inside one container; the legacy Compose deployment runs each
+process in its own container:
 
 1. **`go2rtc`** pulls the encrypted RTSPS video stream from each printer and re-encodes it on the fly with ffmpeg, applying a `drawbox` background plus four stacked `drawtext` filters that render live data lines onto the bottom of the frame.
 2. **`bambu-overlay`** subscribes to each printer's local MQTT broker and writes formatted text files (one per overlay line per printer) once per second. ffmpeg's `drawtext` reads these files on every frame.
@@ -104,7 +107,31 @@ Re-encoding 4× 1080p software-encoded streams uses about **25–50% total CPU**
 
 ---
 
+## Deployment Options
+
+| Deployment | Best for | Configuration |
+|---|---|---|
+| [Single container for Unraid](docs/UNRAID.md) | Unraid and simple Docker management | One `config.yaml`; creates static virtual interfaces at startup |
+| [Legacy Compose stack](docs/INSTALLATION.md) | Existing Synology and Compose installations | Three synchronized YAML files |
+
+The single-container deployment uses host networking plus `NET_ADMIN` to
+manage one virtual camera interface per printer. It validates all settings
+before touching networking and removes its interfaces during a clean stop.
+
+---
+
 ## 🚀 Quick Start
+
+For Unraid, follow the [single-container installation guide](docs/UNRAID.md).
+The abbreviated Docker equivalent is:
+
+```bash
+cp config.unraid.example.yaml config.yaml
+# Edit config.yaml, especially parent_interface and every printer/onvif value.
+docker compose -f compose.single.yaml up -d --build
+```
+
+The existing three-service Compose deployment remains available:
 
 ```bash
 # 1. Clone the repo
@@ -214,6 +241,7 @@ If you get a black screen on adoption, see [docs/TROUBLESHOOTING.md](docs/TROUBL
 ## 📚 Documentation
 
 - **[Installation Guide](docs/INSTALLATION.md)** — step-by-step setup on Synology, including DSM-specific gotchas
+- **[Unraid Installation](docs/UNRAID.md)** — single-container setup with automatic static macvlan lifecycle
 - **[Linux Networking (non-Synology)](docs/LINUX_NETWORKING.md)** — manual macvlan setup for Debian/Ubuntu/Proxmox/OMV/Unraid hosts
 - **[Multi-Printer Setup](docs/MULTI_PRINTER.md)** — adding more than one printer with worked examples
 - **[Customizing the Overlay](docs/CUSTOMIZING.md)** — change colors, position, font size, fields shown
