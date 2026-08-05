@@ -17,7 +17,7 @@ FROM alexxit/go2rtc:1.9.14@sha256:675c318b23c06fd862a61d262240c9a63436b4050d177f
 ARG ONVIF_SERVER_COMMIT
 LABEL org.opencontainers.image.title="Bambu Protect Overlay" \
       org.opencontainers.image.description="Bambu printer video overlays exposed as virtual ONVIF cameras" \
-      org.opencontainers.image.source="https://github.com/mtnears/bambu-protect-overlay" \
+      org.opencontainers.image.source="https://github.com/epark001/bambu-protect-overlay" \
       org.opencontainers.image.licenses="MIT" \
       io.bambu-protect-overlay.go2rtc.version="1.9.14" \
       io.bambu-protect-overlay.onvif-server.commit="${ONVIF_SERVER_COMMIT}"

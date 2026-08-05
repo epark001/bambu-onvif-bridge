@@ -77,7 +77,7 @@ In Bambu Handy: tap the printer → **Settings** → **WLAN** → **Access Code*
 ```bash
 mkdir -p /volume1/docker/bambu-protect-overlay
 cd /volume1/docker/bambu-protect-overlay
-git clone https://github.com/mtnears/bambu-protect-overlay.git .
+git clone https://github.com/epark001/bambu-protect-overlay.git .
 ```
 
 ## 6. Configure

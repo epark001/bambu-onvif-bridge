@@ -23,7 +23,7 @@ Create the appdata directory and copy the example configuration into it:
 ```bash
 mkdir -p /mnt/user/appdata/bambu-protect-overlay
 curl -fsSL \
-  https://raw.githubusercontent.com/mtnears/bambu-protect-overlay/main/config.unraid.example.yaml \
+  https://raw.githubusercontent.com/epark001/bambu-protect-overlay/main/config.unraid.example.yaml \
   -o /mnt/user/appdata/bambu-protect-overlay/config.yaml
 ```
 
@@ -71,7 +71,7 @@ Docker settings are:
 
 | Unraid field | Value |
 |---|---|
-| Repository | `ghcr.io/mtnears/bambu-protect-overlay:latest` |
+| Repository | `ghcr.io/epark001/bambu-protect-overlay:latest` |
 | Network type | Host |
 | Privileged | No |
 | Extra parameters | `--cap-add=NET_ADMIN --restart=unless-stopped --log-opt max-size=50m --log-opt max-file=3` |

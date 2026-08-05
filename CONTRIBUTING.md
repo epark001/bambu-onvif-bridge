@@ -4,7 +4,7 @@ Thanks for your interest in improving Bambu Protect Overlay! Contributions are w
 
 ## Reporting bugs
 
-Open a [GitHub Issue](https://github.com/mtnears/bambu-protect-overlay/issues) with:
+Open a [GitHub Issue](https://github.com/epark001/bambu-protect-overlay/issues) with:
 
 - **What you expected** vs **what actually happened**
 - **Steps to reproduce**

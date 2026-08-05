@@ -135,7 +135,7 @@ The existing three-service Compose deployment remains available:
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/mtnears/bambu-protect-overlay.git
+git clone https://github.com/epark001/bambu-protect-overlay.git
 cd bambu-protect-overlay
 
 # 2. Copy the example configs and edit them with your printer details
